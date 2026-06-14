@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>岗位占比</title>
+<style>
+  body { margin:0; padding:0; }
+  #jobPieChart { width:100%; height:480px; }
+</style>
+</head>
+<body>
+<div id="jobPieChart"></div>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>
+window.onload=function(){
+  const myChart=echarts.init(document.getElementById('jobPieChart'));
+  const option={
+    tooltip:{trigger:'item',formatter:'{b}：{c}%'},
+    legend:{top:'3%',left:'center',textStyle:{fontSize:14}},
+    series:[{
+      name:'岗位占比',
+      type:'pie',
+      radius:['40%','70%'],
+      padAngle:5,
+      itemStyle:{borderRadius:10},
+      label:{show:false,position:'center'},
+      emphasis:{scale:1.12,label:{show:true,fontSize:40,fontWeight:'bold'}},
+      labelLine:{show:false},
+      data:[
+        {value:37,name:'数据标注',itemStyle:{color:'#E9DCB3'}},
+        {value:26,name:'直播后台',itemStyle:{color:'#7FA8D8'}},
+        {value:19,name:'手工包装',itemStyle:{color:'#8EC9A0'}},
+        {value:12,name:'程序开发',itemStyle:{color:'#D88A8A'}},
+        {value:6,name:'其他文职',itemStyle:{color:'#B49CD7'}}
+      ]
+    }]
+  };
+  myChart.setOption(option);
+  window.addEventListener('resize',()=>myChart.resize());
+};
+</script>
+</body>
+</html>
